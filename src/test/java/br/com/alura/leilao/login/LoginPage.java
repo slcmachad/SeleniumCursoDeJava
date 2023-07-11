@@ -50,4 +50,8 @@ public class LoginPage {
 		return browser.getPageSource().contains(texto);
 	}
 
+	public boolean isPaginaDeLoginComDadosInvalidos() {
+		return browser.getCurrentUrl().equals(URL_LOGIN + "?error");
+	}
+
 }

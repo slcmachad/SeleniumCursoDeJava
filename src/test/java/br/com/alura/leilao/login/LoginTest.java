@@ -39,7 +39,7 @@ public class LoginTest {
 		paginaDeLogin.preencheFormularioDeLogin("invalido", "123456");
 		paginaDeLogin.efetuaLogin();
 		
-		Assert.assertTrue(paginaDeLogin.isPaginaDeLogin());
+		Assert.assertTrue(paginaDeLogin.isPaginaDeLoginComDadosInvalidos());
 		Assert.assertNull(paginaDeLogin.getNomeUsuarioLogado());
 		Assert.assertFalse(paginaDeLogin.contemTexto("Usuário e senha Inválidos."));
 
