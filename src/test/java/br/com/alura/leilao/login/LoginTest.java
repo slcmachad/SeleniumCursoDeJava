@@ -1,5 +1,6 @@
 package br.com.alura.leilao.login;
 
+import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -16,6 +17,9 @@ public class LoginTest {
 		browser.findElement(By.id("password")).sendKeys("pass");
 		browser.findElement(By.id("login-form")).submit();
 
+		Assert.assertFalse(browser.getCurrentUrl().equals("http://localhost:8080/login"));
+		Assert.assertEquals("fulano", browser.findElement(By.id("usuario-logado")).getText());
+		browser.quit();
 	}
 	
 	
