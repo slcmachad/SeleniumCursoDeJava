@@ -17,40 +17,12 @@ public class LeiloesTest {
 	
 	@BeforeEach
 	public void beforeEach() {
-		this.paginaDeLogin = new LoginPage();
+		this.paginaDeLeiloes = new LeiloesPage();
 	}
 	
 	@AfterEach
 	public void afterEach() {
-		this.paginaDeLogin.fechar();
-	}
-
-	@Test
-	public void deveriaEfetuarLoginComDadosValidos() {
-		paginaDeLogin.preencheFormularioDeLogin("fulano", "pass");
-		paginaDeLogin.efetuaLogin();
-
-		Assert.assertFalse(paginaDeLogin.isPaginaDeLogin());
-		Assert.assertEquals("fulano", paginaDeLogin.getNomeUsuarioLogado());
+		this.paginaDeLeiloes.fechar();
 	}
 	
-	@Test
-	public void naoDeveriaLogarComDadosInvalidos() {
-		paginaDeLogin.preencheFormularioDeLogin("invalido", "123456");
-		paginaDeLogin.efetuaLogin();
-		
-		Assert.assertTrue(paginaDeLogin.isPaginaDeLoginComDadosInvalidos());
-		Assert.assertNull(paginaDeLogin.getNomeUsuarioLogado());
-		Assert.assertFalse(paginaDeLogin.contemTexto("Usuário e senha Inválidos."));
-
-	}
-	
-	@Test
-	public void naoDeveriaAcessarPaginaRestritaSemEstarLogado() {
-		paginaDeLogin.navegaParaPaginaDeLances();
-
-		Assert.assertTrue(paginaDeLogin.isPaginaDeLogin());
-		Assert.assertFalse(paginaDeLogin.contemTexto("Dados do Leilão"));
-
-	}
 }
