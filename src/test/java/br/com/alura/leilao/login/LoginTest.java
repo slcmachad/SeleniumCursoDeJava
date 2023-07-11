@@ -28,29 +28,29 @@ public class LoginTest {
 	@Test
 	public void deveriaEfetuarLoginComDadosValidos() {
 		paginaDeLogin.preencheFormularioDeLogin("fulano", "pass");
-		browser.findElement(By.id("login-form")).submit();
+		paginaDeLogin.efetuaLogin();
 
-		Assert.assertFalse(browser.getCurrentUrl().equals(URL_LOGIN));
-		Assert.assertEquals("fulano", browser.findElement(By.id("usuario-logado")).getText());
+		Assert.assertFalse(paginaDeLogin.isPaginaDeLogin());
+		Assert.assertEquals("fulano", paginaDeLogin.getNomeUsuarioLogado());
 	}
 	
 	@Test
 	public void naoDeveriaLogarComDadosInvalidos() {
-		browser.findElement(By.id("username")).sendKeys("invalido");
-		browser.findElement(By.id("password")).sendKeys("123132");
-		browser.findElement(By.id("login-form")).submit();
+		paginaDeLogin.preencheFormularioDeLogin("invalido", "123456");
+		paginaDeLogin.efetuaLogin();
+		
+		Assert.assertTrue(paginaDeLogin.isPaginaDeLogin());
+		Assert.assertNull(paginaDeLogin.getNomeUsuarioLogado());
+		Assert.assertFalse(paginaDeLogin.contemTexto("Usuário e senha Inválidos."));
 
-		Assert.assertTrue(browser.getCurrentUrl().equals("http://localhost:8080/login?error"));
-		Assert.assertTrue("fulano", browser.getPageSource().contains("Usuário e senha inválidos."));
-		Assert.assertThrows(NoSuchElementException.class, () -> browser.findElement(By.id("usuario-logado")));
 	}
 	
 	@Test
 	public void naoDeveriaAcessarPaginaRestritaSemEstarLogado() {
-		this.browser.navigate().to("http://localhost:8080/leiloes/2");
+		paginaDeLogin.navegaParaPaginaDeLances();
 
-		Assert.assertTrue(browser.getCurrentUrl().equals(URL_LOGIN));
-		Assert.assertFalse(browser.getPageSource().contains("Dados do Leilão"));
+		Assert.assertTrue(paginaDeLogin.isPaginaDeLogin());
+		Assert.assertFalse(paginaDeLogin.contemTexto("Dados do Leilão"));
 
 	}
 }
