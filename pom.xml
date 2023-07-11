@@ -78,6 +78,12 @@
 		    <artifactId>selenium-chrome-driver</artifactId>
 		</dependency>
 		
+		<dependency>
+			<groupId>io.github.bonigarcia</groupId>
+			<artifactId>webdrivermanager</artifactId>
+			<version>5.4.0</version>
+		</dependency>
+		
 	</dependencies>
 
 	<build>
