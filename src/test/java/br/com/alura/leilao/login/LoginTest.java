@@ -15,29 +15,19 @@ public class LoginTest {
 	
 	private LoginPage paginaDeLogin;
 	
-	
-	
-	@BeforeAll
-	public static void beforeAll() {
-		System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
-	}
-
 	@BeforeEach
-	public void beforEach() {
-		this.browser = new ChromeDriver();
-		browser.navigate().to(URL_LOGIN);
-
+	public void beforeEach() {
+		this.paginaDeLogin = new LoginPage();
 	}
 	
 	@AfterEach
 	public void afterEach() {
-		this.browser.quit();
+		this.paginaDeLogin.fechar();
 	}
 
 	@Test
 	public void deveriaEfetuarLoginComDadosValidos() {
-		browser.findElement(By.id("username")).sendKeys("fulano");
-		browser.findElement(By.id("password")).sendKeys("pass");
+		paginaDeLogin.preencheFormularioDeLogin("fulano", "pass");
 		browser.findElement(By.id("login-form")).submit();
 
 		Assert.assertFalse(browser.getCurrentUrl().equals(URL_LOGIN));
