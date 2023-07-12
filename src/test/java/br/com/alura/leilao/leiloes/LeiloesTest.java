@@ -20,8 +20,8 @@ public class LeiloesTest {
 	public void deveriaCadastrarLeilao() {
 		LoginPage paginaDeLogin = new LoginPage();
 		paginaDeLogin.preencheFormularioDeLogin("fulano", "pass");
-		
-		this.paginaDeLeiloes = paginaDeLogin.efetuaLogin(); 
+		this.paginaDeLeiloes = paginaDeLogin.efetuaLogin();
+		paginaDeLeiloes.carregarFormulario();
 	}
 	
 }
