@@ -19,4 +19,8 @@ public class LeiloesPage {
 		this.browser.navigate().to(URL_CADASTRO_LEILOES);
 		return new CadastroLeiloesPage(browser);
 	}
+
+	public boolean isLeilaoCadastrado(String nome, String valor, String hoje) {
+		return false;
+	}
 }
