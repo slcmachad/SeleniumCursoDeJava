@@ -42,6 +42,7 @@ public class LeiloesTest {
 	public void deveriaValidarCadastroDeLeilao() {
 		this.paginaDeLeiloes = paginaDeCadastro.cadastrarLeilao("", "", "");
 		Assert.assertFalse(this.paginaDeCadastro.isPaginaAtual());
+		Assert.assertTrue(this.paginaDeLeiloes.isPaginaAtual());
 		Assert.assertTrue(this.paginaDeCadastro.isMensagemDeValidacao());
 
 	}
