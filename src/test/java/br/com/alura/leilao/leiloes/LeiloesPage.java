@@ -15,7 +15,7 @@ public class LeiloesPage {
 		this.browser.quit();
 	}
 
-	public void carregarFormulario() {
+	public CadastroLeiloesPage carregarFormulario() {
 		this.browser.navigate().to(URL_CADASTRO_LEILOES);
 		return new CadastroLeiloesPage(browser);
 	}
