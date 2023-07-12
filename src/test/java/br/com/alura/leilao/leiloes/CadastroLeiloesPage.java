@@ -29,4 +29,12 @@ public class CadastroLeiloesPage {
 		return browser.getCurrentUrl().equals(URL_CADASTRO_LEILOES);
 	}
 
+	public boolean isMensagemDeValidacao() {
+		String pageSource = browser.getPageSource(); 
+		return pageSource.contains("minimo 3 caracteres")
+				&& pageSource.contains("não deve estar em branco")
+				&& pageSource.contains("deve ser um valor maior de 0.1")
+				&& pageSource.contains("deve ser uma data no formato dd/MM/yyyy");
+	}
+
 }
