@@ -11,9 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import br.com.alura.leilao.login.LoginPage;
 
-
 public class LeiloesTest {
-	
 	private LeiloesPage paginaDeLeiloes;
 	private CadastroLeiloesPage paginaDeCadastro;
 	
@@ -22,7 +20,7 @@ public class LeiloesTest {
 		LoginPage paginaDeLogin = new LoginPage();
 		paginaDeLogin.preencheFormularioDeLogin("fulano", "pass");
 		this.paginaDeLeiloes = paginaDeLogin.efetuaLogin();
-		CadastroLeiloesPage paginaDeCadastro = paginaDeLeiloes.carregarFormulario();
+		this.paginaDeCadastro = paginaDeLeiloes.carregarFormulario();
 	}
 		
 	@AfterEach
@@ -32,8 +30,6 @@ public class LeiloesTest {
 	
 	@Test
 	public void deveriaCadastrarLeilao() {
-		
-		
 		String hoje = LocalDate.now().format(DateTimeFormatter.ofPattern("ss/MM/yyyy"));
 		String nome = "Leilão do dia " + hoje;
 		String valor = "500.00";
@@ -44,8 +40,8 @@ public class LeiloesTest {
 	
 	@Test
 	public void deveriaValidarCadastroDeLeilao() {
-		this.paginaDeLeiloes = paginaDeCadastro.cadastrarLeilao(null, null, null);
-		Assert.assertTrue(this.paginaDeCadastro.isPaginaAtual());
+		this.paginaDeLeiloes = paginaDeCadastro.cadastrarLeilao("", "", "");
+		Assert.assertFalse(this.paginaDeCadastro.isPaginaAtual());
 		Assert.assertTrue(this.paginaDeCadastro.isMensagemDeValidacao());
 
 	}
