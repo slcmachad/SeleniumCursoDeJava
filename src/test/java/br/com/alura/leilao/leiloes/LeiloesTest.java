@@ -30,7 +30,7 @@ public class LeiloesTest {
 	
 	@Test
 	public void deveriaCadastrarLeilao() {
-		String hoje = LocalDate.now().format(DateTimeFormatter.ofPattern("ss/MM/yyyy"));
+		String hoje = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 		String nome = "Leilão do dia " + hoje;
 		String valor = "500.00";
 				
